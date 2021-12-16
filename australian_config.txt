@@ -1,0 +1,20 @@
+Nazwa Dataset'u: australian
+Kolumna z klas¹ decyzyjn¹: 15
+Liczba wierszy: 690
+Liczba kolumn: 15
+Dataset nie zawiera danych symbolicznych
+Przedzial normalizacji: [0,1]
+Kolumna: 1, Jej minimum: 0.0, Jej maximum: 1.0,
+Kolumna: 2, Jej minimum: 13.75, Jej maximum: 80.25,
+Kolumna: 3, Jej minimum: 0.0, Jej maximum: 28.0,
+Kolumna: 4, Jej minimum: 1.0, Jej maximum: 3.0,
+Kolumna: 5, Jej minimum: 1.0, Jej maximum: 14.0,
+Kolumna: 6, Jej minimum: 1.0, Jej maximum: 9.0,
+Kolumna: 7, Jej minimum: 0.0, Jej maximum: 28.5,
+Kolumna: 8, Jej minimum: 0.0, Jej maximum: 1.0,
+Kolumna: 9, Jej minimum: 0.0, Jej maximum: 1.0,
+Kolumna: 10, Jej minimum: 0.0, Jej maximum: 67.0,
+Kolumna: 11, Jej minimum: 0.0, Jej maximum: 1.0,
+Kolumna: 12, Jej minimum: 1.0, Jej maximum: 3.0,
+Kolumna: 13, Jej minimum: 0.0, Jej maximum: 2000.0,
+Kolumna: 14, Jej minimum: 1.0, Jej maximum: 100001.0,

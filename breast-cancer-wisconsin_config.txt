@@ -1,0 +1,16 @@
+Nazwa Dataset'u: breast-cancer-wisconsin
+Kolumna z klas¹ decyzyjn¹: 11
+Liczba wierszy: 699
+Liczba kolumn: 11
+Dataset nie zawiera danych symbolicznych
+Przedzial normalizacji: [0,1]
+Kolumna: 1, Jej minimum: 61634.0, Jej maximum: 13454352.0,
+Kolumna: 2, Jej minimum: 1.0, Jej maximum: 10.0,
+Kolumna: 3, Jej minimum: 1.0, Jej maximum: 10.0,
+Kolumna: 4, Jej minimum: 1.0, Jej maximum: 10.0,
+Kolumna: 5, Jej minimum: 1.0, Jej maximum: 10.0,
+Kolumna: 6, Jej minimum: 1.0, Jej maximum: 10.0,
+Kolumna: 7, Jej minimum: 1.0, Jej maximum: 10.0,
+Kolumna: 8, Jej minimum: 1.0, Jej maximum: 10.0,
+Kolumna: 9, Jej minimum: 1.0, Jej maximum: 10.0,
+Kolumna: 10, Jej minimum: 1.0, Jej maximum: 10.0,

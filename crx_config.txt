@@ -1,0 +1,61 @@
+Nazwa Dataset'u: crx
+Kolumna z klas¹ decyzyjn¹: 16
+Liczba wierszy: 690
+Liczba kolumn: 16
+Dataset zawiera dane symboliczne, w kolumnach o indexach: [0, 3, 4, 5, 6, 8, 9, 11, 12]
+Przedzial normalizacji: [0,1]
+Index kolumny: 0 zamiana: b na: 2
+Index kolumny: 0 zamiana: a na: 1
+Index kolumny: 3 zamiana: u na: 3
+Index kolumny: 3 zamiana: y na: 2
+Index kolumny: 3 zamiana: l na: 1
+Index kolumny: 4 zamiana: g na: 3
+Index kolumny: 4 zamiana: p na: 2
+Index kolumny: 4 zamiana: gg na: 1
+Index kolumny: 5 zamiana: w na: 14
+Index kolumny: 5 zamiana: q na: 13
+Index kolumny: 5 zamiana: m na: 12
+Index kolumny: 5 zamiana: r na: 11
+Index kolumny: 5 zamiana: cc na: 10
+Index kolumny: 5 zamiana: k na: 9
+Index kolumny: 5 zamiana: c na: 8
+Index kolumny: 5 zamiana: d na: 7
+Index kolumny: 5 zamiana: x na: 6
+Index kolumny: 5 zamiana: i na: 5
+Index kolumny: 5 zamiana: e na: 4
+Index kolumny: 5 zamiana: aa na: 3
+Index kolumny: 5 zamiana: ff na: 2
+Index kolumny: 5 zamiana: j na: 1
+Index kolumny: 6 zamiana: v na: 9
+Index kolumny: 6 zamiana: h na: 8
+Index kolumny: 6 zamiana: bb na: 7
+Index kolumny: 6 zamiana: ff na: 6
+Index kolumny: 6 zamiana: j na: 5
+Index kolumny: 6 zamiana: z na: 4
+Index kolumny: 6 zamiana: o na: 3
+Index kolumny: 6 zamiana: dd na: 2
+Index kolumny: 6 zamiana: n na: 1
+Index kolumny: 8 zamiana: t na: 2
+Index kolumny: 8 zamiana: f na: 1
+Index kolumny: 9 zamiana: t na: 2
+Index kolumny: 9 zamiana: f na: 1
+Index kolumny: 11 zamiana: f na: 2
+Index kolumny: 11 zamiana: t na: 1
+Index kolumny: 12 zamiana: g na: 3
+Index kolumny: 12 zamiana: s na: 2
+Index kolumny: 12 zamiana: p na: 1
+Kolumna: 1, Jej minimum: 1.0, Jej maximum: 2.0,
+Kolumna: 2, Jej minimum: 13.75, Jej maximum: 80.25,
+Kolumna: 3, Jej minimum: 0.0, Jej maximum: 28.0,
+Kolumna: 4, Jej minimum: 1.0, Jej maximum: 3.0,
+Kolumna: 5, Jej minimum: 1.0, Jej maximum: 3.0,
+Kolumna: 6, Jej minimum: 1.0, Jej maximum: 14.0,
+Kolumna: 7, Jej minimum: 1.0, Jej maximum: 9.0,
+Kolumna: 8, Jej minimum: 0.0, Jej maximum: 28.5,
+Kolumna: 9, Jej minimum: 1, Jej maximum: 2,
+Kolumna: 10, Jej minimum: 1, Jej maximum: 2,
+Kolumna: 11, Jej minimum: 0, Jej maximum: 67,
+Kolumna: 12, Jej minimum: 1, Jej maximum: 2,
+Kolumna: 13, Jej minimum: 2, Jej maximum: 3,
+Kolumna: 14, Jej minimum: 0.0, Jej maximum: 2000.0,
+Kolumna: 15, Jej minimum: 0, Jej maximum: 100000,
