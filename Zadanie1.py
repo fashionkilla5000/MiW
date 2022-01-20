@@ -152,7 +152,10 @@ def podaj_i_normalizuj_wpisane_wartosci(dane, ncols, nrows):
     znormalizowane = normalizacja(dane_nowe, nmin, nmax, nrows + 1, ncols)
     war_znormali = znormalizowane.to_numpy()[nrows][:]
 
-    print("Podana próbka: \n", war_znormali)
+    pretty = np.array(war_znormali)
+    np.set_printoptions(precision=3, suppress=True)
+
+    print("Podana próbka: \n", list(pretty))
 
     return war_znormali
 
@@ -182,13 +185,15 @@ def k_najb_probek(war_znormali, kopia, ncols, nrows, k, metryka,p):
     odl = pd.DataFrame(odl).head(k)
     zlicz = Counter(odl.to_numpy()[:, 0])
     values = list(zlicz.values())
-    if len(values) > 1:
-        if values[0] == values[1]:
-            wynik["Sklasyfikowano"] = False
-            return wynik
-    decyzja = zlicz.most_common(1)[0][0]
+
+    if len(values) > 1 and len(set(values)) == 1:
+        wynik["Sklasyfikowano"] = False
+        return wynik
+
+    decyzja = max(zlicz, key=zlicz.get)
 
     wynik["Decyzja"] = decyzja
+
     return wynik
 
 def najmniejsza_suma_odl(kopia, war_znormali, ncols, k, metryka,p):
@@ -200,69 +205,48 @@ def najmniejsza_suma_odl(kopia, war_znormali, ncols, k, metryka,p):
         "Decyzja": ""
     }
 
-    kopia.columns = range(ncols)
-    decyzje = set(kopia.to_numpy()[:, ncols - 1])
-    plus, minus = list(decyzje)[0], list(decyzje)[1]
-    plusy, minusy = [], []
-    for x in range(rows):
-        if kopia.to_numpy()[x, ncols - 1] == plus:
-            plusy.append(kopia.to_numpy()[x, :])
-        if kopia.to_numpy()[x, ncols - 1] == minus:
-            minusy.append(kopia.to_numpy()[x, :])
+    decyzje = list(set(kopia.to_numpy()[:, ncols - 1]))
 
-    plusy = pd.DataFrame(plusy)
-    minusy = pd.DataFrame(minusy)
+    odl = {}
 
-    odl_plusy = []
-    odl_minusy = []
+    for x in range(len(decyzje)):
+        podzielone = []
+        policzone_odl = []
+        for y in range(rows):
+            if kopia.to_numpy()[y, ncols - 1] == decyzje[x]:
+                podzielone.append(kopia.to_numpy()[y, :])
+        podzielone = pd.DataFrame(podzielone)
 
-    for x in range(len(plusy.index) - 1):
-        if metryka == 1:
-            odl_plusy.append(
-                (plusy.to_numpy()[x, len(plusy.columns) - 1], metryka_euklides(plusy.to_numpy()[x], war_znormali)))
-        if metryka == 2:
-            odl_plusy.append(
-                (plusy.to_numpy()[x, len(plusy.columns) - 1], metryka_logarytm(plusy.to_numpy()[x], war_znormali)))
-        if metryka == 3:
-            odl_plusy.append(
-                (plusy.to_numpy()[x, len(plusy.columns) - 1], metryka_czebyszew(plusy.to_numpy()[x], war_znormali)))
-        if metryka == 4:
-            odl_plusy.append(
-                (plusy.to_numpy()[x, len(plusy.columns) - 1], metryka_minkowski(plusy.to_numpy()[x], war_znormali,p)))
-        if metryka == 5:
-            odl_plusy.append(
-                (plusy.to_numpy()[x, len(plusy.columns) - 1], metryka_manhattan(plusy.to_numpy()[x], war_znormali)))
-    for x in range(len(minusy.index) - 1):
-        if metryka == 1:
-            odl_minusy.append(
-                (minusy.to_numpy()[x, len(plusy.columns) - 1], metryka_euklides(minusy.to_numpy()[x], war_znormali)))
-        if metryka == 2:
-            odl_minusy.append(
-                (minusy.to_numpy()[x, len(plusy.columns) - 1], metryka_logarytm(minusy.to_numpy()[x], war_znormali)))
-        if metryka == 3:
-            odl_minusy.append(
-                (minusy.to_numpy()[x, len(plusy.columns) - 1], metryka_czebyszew(minusy.to_numpy()[x], war_znormali)))
-        if metryka == 4:
-            odl_minusy.append(
-                (minusy.to_numpy()[x, len(plusy.columns) - 1], metryka_minkowski(minusy.to_numpy()[x], war_znormali,p)))
-        if metryka == 5:
-            odl_minusy.append(
-                (minusy.to_numpy()[x, len(plusy.columns) - 1], metryka_manhattan(minusy.to_numpy()[x], war_znormali)))
+        for z in range(len(podzielone) - 1):
+            if metryka == 1:
+                policzone_odl.append(
+                    (podzielone.to_numpy()[z, len(podzielone.columns) - 1],
+                     metryka_euklides(podzielone.to_numpy()[z], war_znormali)))
+            if metryka == 2:
+                policzone_odl.append(
+                    (podzielone.to_numpy()[z, len(podzielone.columns) - 1],
+                     metryka_logarytm(podzielone.to_numpy()[z], war_znormali)))
+            if metryka == 3:
+                policzone_odl.append(
+                    (podzielone.to_numpy()[z, len(podzielone.columns) - 1],
+                     metryka_czebyszew(podzielone.to_numpy()[z], war_znormali)))
+            if metryka == 4:
+                policzone_odl.append(
+                    (podzielone.to_numpy()[z, len(podzielone.columns) - 1],
+                     metryka_minkowski(podzielone.to_numpy()[x], war_znormali, p)))
+            if metryka == 5:
+                policzone_odl.append(
+                    (podzielone.to_numpy()[z, len(podzielone.columns) - 1],
+                     metryka_manhattan(podzielone.to_numpy()[z], war_znormali)))
 
-    odl_plusy.sort(key=lambda tup: tup[1])
-    odl_plusy = pd.DataFrame(odl_plusy).head(k)
+        policzone_odl.sort(key=lambda tup: tup[1])
+        policzone_odl = pd.DataFrame(policzone_odl).head(k)
+        odl[decyzje[x]] = sum(policzone_odl.to_numpy()[:, 1])
 
-    odl_minusy.sort(key=lambda tup: tup[1])
-    odl_minusy = pd.DataFrame(odl_minusy).head(k)
+    min_odl_key = min(odl, key=odl.get)
 
-    suma_plusy = sum(odl_plusy.to_numpy()[:, 1])
-    suma_minusy = sum(odl_minusy.to_numpy()[:, 1])
-
-    decyzja = ""
-    if suma_minusy < suma_plusy:
-        wynik["Decyzja"] = str(odl_minusy.to_numpy()[0, 0])
-    elif suma_minusy > suma_plusy:
-        wynik["Decyzja"] = str(odl_plusy.to_numpy()[0, 0])
+    if len(set(odl.values())) > 1:
+        wynik["Decyzja"] = str(min_odl_key)
     else:
         wynik["Sklasyfikowano"] = False
 
@@ -337,10 +321,10 @@ def zadanie2():
     if opcja1 == 1:
         war_znormali = podaj_i_normalizuj_wpisane_wartosci(dane, ncols,nrows)
 
-        k = int(input("Podaj parametr k:"))
-
         opcja1_1 = int(
             input("Którym sposobem liczymy? (1. K najblizszych probek; 2. Najmniejsza suma odleglosci w k probkach): "))
+
+        k = int(input("Podaj parametr k: "))
 
         if opcja1_1 == 1:
             wynik = k_najb_probek(war_znormali, kopia, ncols, nrows, k, metryka,p)
@@ -352,14 +336,14 @@ def zadanie2():
 
     if opcja1 == 2:
 
-        k = int(input("Podaj parametr k:"))
-
         poprawnie = 0
         blednie = 0
         nie_udalo_sie = 0
 
         opcja1_1 = int(
             input("Którym sposobem liczymy? (1. K najblizszych probek; 2. Najmniejsza suma odleglosci w k probkach): "))
+
+        k = int(input("Podaj parametr k: "))
 
         for x in range(nrows):
             print("Index Kolumny: ",x)
