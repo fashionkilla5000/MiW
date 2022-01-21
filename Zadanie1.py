@@ -185,8 +185,9 @@ def k_najb_probek(war_znormali, kopia, ncols, nrows, k, metryka,p):
     odl = pd.DataFrame(odl).head(k)
     zlicz = Counter(odl.to_numpy()[:, 0])
     values = list(zlicz.values())
+    values.sort(reverse=True)
 
-    if len(values) > 1 and len(set(values)) == 1:
+    if len(values) > 1 and values[0] == values[1]:
         wynik["Sklasyfikowano"] = False
         return wynik
 
@@ -243,13 +244,14 @@ def najmniejsza_suma_odl(kopia, war_znormali, ncols, k, metryka,p):
         policzone_odl = pd.DataFrame(policzone_odl).head(k)
         odl[decyzje[x]] = sum(policzone_odl.to_numpy()[:, 1])
 
-    min_odl_key = min(odl, key=odl.get)
+    values = list(odl.values())
 
-    if len(set(odl.values())) > 1:
-        wynik["Decyzja"] = str(min_odl_key)
-    else:
+    if len(values) > 1 and values[0] == values[1]:
         wynik["Sklasyfikowano"] = False
+        return wynik
 
+    min_odl_key = min(odl, key=odl.get)
+    wynik["Decyzja"] = str(min_odl_key)
     return wynik
 
 def metryka_euklides(row1, row2):
